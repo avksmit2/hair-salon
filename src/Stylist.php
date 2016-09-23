@@ -37,6 +37,23 @@
             $this->setName($new_name);
         }
 
+        function getClients()
+        {
+            $clients = array();
+            $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients WHERE stylist_id = {$this->getId()} ORDER BY last_visit;");
+            foreach($returned_clients as $client) {
+                $name = $client['name'];
+                $phone = $client['phone'];
+                $last_visit = $client['last_visit'];
+                $notes = $client['notes'];
+                $stylist_id = $client['stylist_id'];
+                $id = $client['id'];
+                $new_client = new Client($name, $phone, $last_visit, $notes, $stylist_id, $id);
+                array_push($clients, $new_client);
+            }
+            return $clients;
+        }
+
         static function getAll()
         {
             $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
