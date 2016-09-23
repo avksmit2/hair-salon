@@ -14,7 +14,7 @@ class Client
         $this->phone = $phone;
         $this->last_visit = $last_visit;
         $this->notes = $notes;
-        $stylist_id->stylist_id = $stylist_id;
+        $this->stylist_id = $stylist_id;
         $this->id = $id;
     }
 
@@ -60,7 +60,7 @@ class Client
 
     function getId()
     {
-        return $this->Id;
+        return $this->id;
     }
 
     function getStylistId()
@@ -76,8 +76,8 @@ class Client
 
     static function getAll()
     {
-        $clients = array();
         $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients;");
+        $clients = array();
         foreach($returned_clients as $client) {
             $name = $client['name'];
             $phone = $client['phone'];
