@@ -18,7 +18,7 @@
             // Stylist::deleteAll();
         }
 
-        function test_stylistName()
+        function testStylistName()
         {
             $name = "Betty";
             $test_stylist = new Stylist($name);
@@ -28,7 +28,7 @@
             $this->assertEquals($name, $result);
         }
 
-        function test_getId()
+        function testGetId()
         {
             $name = "Betty";
             $id = 1;
@@ -37,6 +37,32 @@
             $result = $test_stylist->getId();
 
             $this->assertEquals(true, is_numeric($result));
+        }
+
+        function testSave()
+        {
+            $name = "Betty";
+            // $id = null;
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+
+            $result = Stylist::getAll();
+
+            $this->assertEquals($test_stylist, $result[0]);
+        }
+
+        function testGetAll()
+        {
+            $name = "Betty";
+            $test_stylist = new Stylist($name);
+            $test_stylist->save();
+            $name2 = "Flo";
+            $test_stylist2 = new Stylist($name2);
+            $test_stylist2->save();
+
+            $result = Stylist::getAll();
+
+            $this->assertEquals([$test_stylist, $test_stylist2], $result);
         }
     }
 
