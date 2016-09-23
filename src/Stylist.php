@@ -42,7 +42,7 @@
             $clients = array();
             $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients WHERE stylist_id = {$this->getId()} ORDER BY last_visit;");
             foreach($returned_clients as $client) {
-                $name = $client['name'];
+                $name = ucwords($client['name']);
                 $phone = $client['phone'];
                 $last_visit = $client['last_visit'];
                 $notes = $client['notes'];
@@ -65,7 +65,7 @@
             $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
             $stylists = array();
             foreach($returned_stylists as $stylist) {
-                $name = $stylist['name'];
+                $name = ucwords($stylist['name']);
                 $id = $stylist['id'];
                 $new_stylist = new Stylist($name, $id);
                 array_push($stylists, $new_stylist);

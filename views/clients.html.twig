@@ -6,6 +6,22 @@
         <title>Hair Salon</title>
     </head>
     <body>
+        <h1 class="header text-center"><span class="salon-name">Your Hair Do</span>, welcome stylists!</h1>
+        <div class="container well">
+            {% if clients is not empty %}
+                <h3>Here are your clients!</h3>
+                <ul>
+                    {% for client in clients %}
+                        <li>{{ name }} <br> Phone: {{ phone }} <br> Last Visit: {{ last_visit }} <br> Notes: {{ notes }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <h3>You have no clients listed yet!</h3>
+            {% endif %}
 
+            <form action="/addClient">
+                <button type="submit" class="btn btn-info">Add Client</button>
+            </form>
+        </div>
     </body>
 </html>

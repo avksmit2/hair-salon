@@ -5,13 +5,13 @@
     <title>Hair Salon</title>
     </head>
     <body>
-        <h1 class="well text-center">Your Hair Do, welcome stylists!</h1>
-        <div class="container">
+        <h1 class="header text-center"><span class="salon-name">Your Hair Do</span>, welcome stylists!</h1>
+        <div class="container well">
             {% if stylists is not empty %}
             <h2>Please click on your name to see your clients:</h2>
             <ul>
                 {% for stylist in stylists %}
-                    <li><a href="/stylists/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
+                    <li><a href="/clients/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
                 {% endfor %}
             </ul>
 
@@ -23,7 +23,7 @@
             {% endif %}
 
             <h3>Create a new stylist:</h3>
-            <form action="/clients" method="post">
+            <form action="/stylist" method="post">
                 <div class="form-group">
                     <label for="name">Stylist Name:</label>
                     <input id="name" name="name" type="text">

@@ -26,10 +26,16 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
-    $app->post("/clients", function() use ($app) {
+    $app->post("/stylist", function() use ($app) {
         $stylist = new Stylist($_POST['name']);
         $stylist->save();
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+    });
+
+    $app->get("/clients/{id}", function($id) use ($app) {
+        $stylist = Stylist::find($id);
+        $stylist->save();
+        return $app['twig']->render('clients.html.twig', array('stylist' => $stylist->getId(), 'clients' => $stylist->getClients()));
     });
 
     return $app;
