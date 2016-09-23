@@ -164,5 +164,30 @@
 
             $this->assertEquals($test_client, $result);
         }
+
+        function testUpdate()
+        {
+            $name = "Flo";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $name = "Barb";
+            $phone = "423-443-1234";
+            $last_visit = "2016-07-01";
+            $notes = "Beaverton";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($name, $phone, $last_visit, $notes, $stylist_id, $id);
+            $test_client->save();
+
+            $new_name = "Barb";
+            $new_phone = "423-443-1234";
+            $new_last_visit = "2016-09-01";
+            $new_notes = "Beaverton";
+
+            $test_client->update($new_name, $new_phone, $new_last_visit, $new_notes);
+
+            $this->assertEquals("2016-09-01", $test_client->getLastVisit());
+        }
     }
 ?>
