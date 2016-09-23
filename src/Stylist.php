@@ -54,6 +54,12 @@
             return $clients;
         }
 
+        function delete($stylist_id)
+        {
+            $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$stylist_id};");
+            $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$stylist_id};");
+        }
+
         static function getAll()
         {
             $returned_stylists = $GLOBALS['DB']->query("SELECT * FROM stylists;");
@@ -85,7 +91,5 @@
             }
             return $found_stylist;
         }
-
-
     }
 ?>

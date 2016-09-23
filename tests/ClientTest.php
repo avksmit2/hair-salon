@@ -189,5 +189,26 @@
 
             $this->assertEquals("2016-09-01", $test_client->getLastVisit());
         }
+
+        function testDeleteClients()
+        {
+            $name = "Flo";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $stylist_id = $test_stylist->getId();
+
+            $name = "Barb";
+            $phone = "423-443-1234";
+            $last_visit = "2016-07-01";
+            $notes = "Beaverton";
+            $test_client = new Client($name, $phone, $last_visit, $notes, $stylist_id, $id);
+            $test_client->save();
+
+            Client::delete($stylist_id);
+
+            $this->assertEquals("", Client::find($test_client->getId()));
+        }
     }
 ?>

@@ -118,5 +118,10 @@ class Client
         }
         return $found_client;
     }
+
+    static function delete($stylist_id)
+    {
+        $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$stylist_id};");
+    }
 }
 ?>

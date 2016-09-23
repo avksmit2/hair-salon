@@ -110,6 +110,34 @@
             $this->assertEquals("Elizabeth", $test_stylist->getName());
         }
 
+        function testDeleteStylistAndClients()
+        {
+            $name = "Flo";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $stylist_id = $test_stylist->getId();
+
+            $name = "Barb";
+            $phone = "423-443-1234";
+            $last_visit = "2016-07-01";
+            $notes = "Beaverton";
+            $test_client = new Client($name, $phone, $last_visit, $notes, $stylist_id, $id);
+            $test_client->save();
+
+            $name = "Sandy";
+            $phone = "522-443-1234";
+            $last_visit = "2016-05-01";
+            $notes = "Northside";
+            $test_client2 = new Client($name, $phone, $last_visit, $notes, $stylist_id, $id);
+            $test_client2->save();
+
+            $test_stylist->delete($stylist_id);
+
+            $this->assertEquals([], Client::getAll());
+        }
+        
         function testGetClients()
         {
             $name = "Flo";
