@@ -37,6 +37,7 @@
             $test_client->save();
 
             $result = Client::getAll();
+
             $this->assertEquals($test_client, $result[0]);
         }
 
@@ -134,6 +135,34 @@
             $result = $test_client->getStylistId();
 
             $this->assertEquals(true, is_numeric($result));
+        }
+
+        function testFind()
+        {
+            $name = "Flo";
+            $id = null;
+            $test_stylist = new Stylist($name, $id);
+            $test_stylist->save();
+
+            $name = "Barb";
+            $phone = "423-443-1234";
+            $last_visit = "2016-07-01";
+            $notes = "Beaverton";
+            $stylist_id = $test_stylist->getId();
+            $test_client = new Client($name, $phone, $last_visit, $notes, $stylist_id, $id);
+            $test_client->save();
+
+            $name = "Sandy";
+            $phone = "522-443-1234";
+            $last_visit = "2016-05-01";
+            $notes = "Northside";
+            $stylist_id = $test_stylist->getId();
+            $test_client2 = new Client($name, $phone, $last_visit, $notes, $stylist_id, $id);
+            $test_client2->save();
+
+            $result = Client::find($test_client->getId());
+
+            $this->assertEquals($test_client, $result);
         }
     }
 ?>
