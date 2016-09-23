@@ -44,7 +44,7 @@ _{A mySQL database holds a salon's stylists and their individual clients.  The u
 * If there is no file to import, type in the command line _"mysql.server start"_ and then _"mysql -uroot -proot"_.
 * Type in _"CREATE DATABASE hair_salon;"_.
 * Type in _"USE hair_salon;"_.
-* Create the tables by typing in _"CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR(255));"_ and _"CREATE TABLE clients (id serial PRIMARY KEY, stylist_id INT, name VARCHAR(255), phone VARCHAR(255), last_visit DATE);"_.
+* Create the tables by typing in _"CREATE TABLE stylists (id serial PRIMARY KEY, name VARCHAR(255));"_ and _"CREATE TABLE clients (id serial PRIMARY KEY, stylist_id INT, name VARCHAR(255), phone VARCHAR(255), last_visit DATE, notes VARCHAR(255));"_.
 
 ## Known Bugs
 
