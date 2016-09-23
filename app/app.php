@@ -34,9 +34,49 @@
 
     $app->get("/clients/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
-        $stylist->save();
-        return $app['twig']->render('clients.html.twig', array('stylist' => $stylist->getId(), 'clients' => $stylist->getClients()));
+        return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
+
+    $app->get("/clients/{id}/add", function($id) use ($app) {
+        $stylist = Stylist::find($id);
+        return $app['twig']->render('add_clients.html.twig', array('stylist' => $stylist));
+    });
+
+    $app->get("/clients/{id}/edit", function($id) use ($app) {
+        $client = Client::find($id);
+        return $app['twig']->render('edit_clients.html.twig', array('client' => $client));
+    });
+
+    $app->post("/clients", function() use ($app) {
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
+        $last_visit = $_POST['last_visit'];
+        $notes = $_POST['notes'];
+        $stylist_id = $_POST['stylist_id'];
+        $client = new Client($name, $phone, $last_visit, $notes, $stylist_id, $id=null);
+        $client->save();
+
+        $stylist=Stylist::find($stylist_id);
+        return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
+
+    $app->patch("/clients/{id}", function($id) use ($app) {
+        $name = $_POST['name'];
+        $phone = $_POST['phone'];
+        $last_visit = $_POST['last_visit'];
+        $notes = $_POST['notes'];
+        $client = Client::find($id);
+        $client->update($name, $phone, $last_visit, $notes);
+
+        $stylist = Stylist::find($id);
+        return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
+    });
+
+    // $app->delete("/cuisines/{id}", function($id) use ($app) {
+    //     $cuisine = Cuisine::find($id);
+    //     $cuisine->delete();
+    //     return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
+    // });
 
     return $app;
 ?>

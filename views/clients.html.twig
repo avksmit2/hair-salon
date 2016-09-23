@@ -12,14 +12,17 @@
                 <h3>Here are your clients!</h3>
                 <ul>
                     {% for client in clients %}
-                        <li>{{ name }} <br> Phone: {{ phone }} <br> Last Visit: {{ last_visit }} <br> Notes: {{ notes }}</li>
+                        <li>{{ client.getName }}<a href="/clients/{{ client.getId }}/edit">  (Edit Client)</a>
+                            <br> Phone: {{ client.getPhone }}
+                            <br> Last Visit: {{ client.getLastVisit }}
+                            <br> Notes: {{ client.getNotes }}</li>
                     {% endfor %}
                 </ul>
             {% else %}
                 <h3>You have no clients listed yet!</h3>
             {% endif %}
 
-            <form action="/addClient">
+            <form action="/clients/{{ stylist.getId }}/add">
                 <button type="submit" class="btn btn-info">Add Client</button>
             </form>
         </div>
