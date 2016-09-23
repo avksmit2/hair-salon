@@ -29,7 +29,7 @@
             $test_stylist->save();
 
             $name = "Barb";
-            $phone = "423-443-1234";
+            $phone = "";
             $last_visit = "2016-07-01";
             $notes = "Beaverton";
             $stylist_id = $test_stylist->getId();

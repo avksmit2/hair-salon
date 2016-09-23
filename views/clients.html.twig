@@ -15,7 +15,7 @@
                         <li>{{ client.getName }}<a href="/clients/{{ client.getId }}/edit">  (Edit Client)</a>
                             <br> Phone: {{ client.getPhone }}
                             <br> Last Visit: {{ client.getLastVisit }}
-                            <br> Notes: {{ client.getNotes }}</li>
+                            <br> Notes: {{ client.getNotes }} {{ client.getId }}</li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -29,6 +29,8 @@
             <form action="/clients/{{ stylist.getId }}" method="post">
                 <button type="submit" class="btn btn-danger">Delete All Clients</button>
             </form>
+
+            <a href="/">Home</a>
         </div>
     </body>
 </html>

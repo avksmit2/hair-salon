@@ -11,7 +11,7 @@
             <h2>Please click on your name to see your clients:</h2>
             <ul>
                 {% for stylist in stylists %}
-                    <li><a href="/clients/{{ stylist.getId }}">{{ stylist.getName }}</a></li>
+                    <li><a href="/clients/{{ stylist.getId }}">{{ stylist.getName }}</a> <a href="/stylists/{{ stylist.getId }}/edit">(Edit)</a></li>
                 {% endfor %}
             </ul>
 

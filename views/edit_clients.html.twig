@@ -15,27 +15,27 @@
             <p>Notes: {{ client.getNotes }}</p>
 
             <h3>Edit your client information below:</h3>
-            <form action="/clients/{{ client.getStylistId }}" method="post">
+            <form action="/clients/{{ client.getId }}" method="post">
                 <input id="stylist_id" name="stylist_id" type="hidden" value="{{ client.getStylistId }}">
                 <input name="_method" type="hidden" value="patch">
                 <div class="form-group">
                     <label for="name">Name:</label>
-                    <input id="name" name="name" type="text">
+                    <input id="name" name="name" type="text" value="{{ client.getName }}">
                 </div>
 
                 <div class="form-group">
                     <label for="phone">Phone Number:</label>
-                    <input id="phone" name="phone" type="text">
+                    <input id="phone" name="phone" type="text" value="{{ client.getPhone }}">
                 </div>
 
                 <div class="form-group">
                     <label for="last_visit">Date of Last Visit:</label>
-                    <input id="last_visit" name="last_visit" type="text" placeholder="yy-dd-mm">
+                    <input id="last_visit" name="last_visit" type="text" value="{{ client.getLastVisit }}">
                 </div>
 
                 <div class="form-group">
                     <label for="notes">Notes:</label>
-                    <input id="notes" name="notes" type="text">
+                    <input id="notes" name="notes" type="text" value="{{ client.getNotes }}">
                 </div>
                 <button type="submit" class="btn btn-info">Update</button>
             </form>
