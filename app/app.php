@@ -32,6 +32,12 @@
         return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
     });
 
+    $app->get("/delete_stylists", function() use ($app) {
+        Stylist::deleteAll();
+        Client::deleteAll();
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+    });
+
     $app->get("/clients/{id}", function($id) use ($app) {
         $stylist = Stylist::find($id);
         return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
@@ -67,16 +73,16 @@
         $notes = $_POST['notes'];
         $client = Client::find($id);
         $client->update($name, $phone, $last_visit, $notes);
-
+        var_dump($client);
         $stylist = Stylist::find($id);
         return $app['twig']->render('clients.html.twig', array('stylist' => $stylist, 'clients' => $stylist->getClients()));
     });
 
-    // $app->delete("/cuisines/{id}", function($id) use ($app) {
-    //     $cuisine = Cuisine::find($id);
-    //     $cuisine->delete();
-    //     return $app['twig']->render('index.html.twig', array('cuisines' => Cuisine::getAll()));
-    // });
+    $app->post("/clients/{id}", function($id) use ($app) {
+        $stylist = Stylist::find($id);
+        Client::delete($id);
+        return $app['twig']->render('index.html.twig', array('stylists' => Stylist::getAll()));
+    });
 
     return $app;
 ?>

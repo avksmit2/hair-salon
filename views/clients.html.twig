@@ -25,6 +25,10 @@
             <form action="/clients/{{ stylist.getId }}/add">
                 <button type="submit" class="btn btn-info">Add Client</button>
             </form>
+
+            <form action="/clients/{{ stylist.getId }}" method="post">
+                <button type="submit" class="btn btn-danger">Delete All Clients</button>
+            </form>
         </div>
     </body>
 </html>
