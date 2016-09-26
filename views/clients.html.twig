@@ -9,13 +9,13 @@
         <h1 class="header text-center"><span class="salon-name">Your Hair Do</span>, welcome stylists!</h1>
         <div class="container well">
             {% if clients is not empty %}
-                <h3>Here are your clients!</h3>
+                <h3>Here are {{ stylist.getName }}'s clients!</h3>
                 <ul>
                     {% for client in clients %}
                         <li>{{ client.getName }}<a href="/clients/{{ client.getId }}/edit">  (Edit Client)</a>
                             <br> Phone: {{ client.getPhone }}
                             <br> Last Visit: {{ client.getLastVisit }}
-                            <br> Notes: {{ client.getNotes }} {{ client.getId }}</li>
+                            <br> Notes: {{ client.getNotes }}</li>
                     {% endfor %}
                 </ul>
             {% else %}
@@ -30,7 +30,7 @@
                 <button type="submit" class="btn btn-danger">Delete All Clients</button>
             </form>
 
-            <a href="/">Home</a>
+            <h3><a href="/">Home</a></h3>
         </div>
     </body>
 </html>
